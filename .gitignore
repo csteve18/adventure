@@ -1,1 +1,5 @@
 
+/lib
+/.cache/
+/dist/
+/node_modules/
