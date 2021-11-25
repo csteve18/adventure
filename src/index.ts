@@ -11,10 +11,11 @@ function getUsers(): Promise<User[]> {
             .then(json => { return json as User[] })
 }
 
-let element = <HTMLInputElement>document.getElementById("result");
-element.value = "Text you want to give";
+const result = document.getElementById('result')
 
 getUsers()
     .then(users => {
-            console.log(users)
+        if(result != null){
+            result.innerHTML = users.map(u => u.name).toString()
+        }
     })
