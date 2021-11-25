@@ -11,8 +11,6 @@ function getUsers(): Promise<User[]> {
             .then(json => { return json as User[] })
 }
 
-const result = document.getElementById('result')
-
 const element: HTMLElement = document.getElementById('result') as HTMLElement
 element.innerHTML = 'Hello World'
 
