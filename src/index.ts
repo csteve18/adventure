@@ -12,6 +12,11 @@ function getUsers(): Promise<User[]> {
 }
 
 const result = document.getElementById('result')
+
+const element: HTMLElement = document.getElementById('result') as HTMLElement
+element.innerHTML = 'Hello World'
+
+
 getUsers()
     .then(users => {
             console.log(users)
