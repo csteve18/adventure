@@ -11,9 +11,8 @@ function getUsers(): Promise<User[]> {
             .then(json => { return json as User[] })
 }
 
-const element: HTMLElement = document.getElementById('result') as HTMLElement
-element.innerHTML = 'Hello World'
-
+let element = <HTMLInputElement>document.getElementById("result");
+element.value = "Text you want to give";
 
 getUsers()
     .then(users => {
