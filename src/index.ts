@@ -6,7 +6,7 @@ interface User {
 function getUsers(): Promise<User[]> {
 
     // For now, consider the data is stored on a static `users.json` file
-    return fetch('https://jsonplaceholder.typicode.com/todos/1')
+    return fetch('https://jsonplaceholder.typicode.com/users')
             .then(response => response.json())
             .then(json => { return json as User[] })
 }
