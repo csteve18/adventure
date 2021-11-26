@@ -1,24 +1,39 @@
-interface User {
+interface GPSCoordinate {
     id: number
-    name: string
+    longitude: number
+    latitude: number
+    hitDate: Date
 }
 
-function getUsers() {
-     fetch('https://jsonplaceholder.typicode.com/posts', {
-        method: 'POST',
-        body: JSON.stringify({
-            title: 'foo',
-            body: 'bar',
-            userId: 1,
-        }),
-        headers: {
-            'Content-type': 'application/json; charset=UTF-8',
-        },
+function getGPSCoordinates(): Promise<GPSCoordinate[]> {
+
+    return fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(json => { return json as GPSCoordinate[] })
+}
+
+
+function addGPSCoordinate(gpsCoord: GPSCoordinate): Promise<GPSCoordinate> {
+    return fetch('https://jsonplaceholder.typicode.com/posts', {
+            method: 'POST',
+            body: JSON.stringify({
+                latitude: gpsCoord.latitude,
+                longitude: gpsCoord.longitude,
+                hitDate: gpsCoord.hitDate,
+            }),
+            headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+            },
         })
         .then((response) => response.json())
-        .then((json) => console.log(json));
+        .then(json => { return json as GPSCoordinate});
 }
 
 const result = document.getElementById('result')
 
-getUsers()
+getGPSCoordinates()
+    .then(users => {
+        if(result != null){
+            result.innerHTML = users.map(u => u.id).toString()
+        }
+    })
