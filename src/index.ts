@@ -3,17 +3,22 @@ interface User {
     name: string
 }
 
-function getUsers(): Promise<User[]> {
-    return fetch('https://jsonplaceholder.typicode.com/users')
-            .then(response => response.json())
-            .then(json => { return json as User[] })
+function getUsers() {
+     fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        body: JSON.stringify({
+            title: 'foo',
+            body: 'bar',
+            userId: 1,
+        }),
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+        },
+        })
+        .then((response) => response.json())
+        .then((json) => console.log(json));
 }
 
 const result = document.getElementById('result')
 
 getUsers()
-    .then(users => {
-        if(result != null){
-            result.innerHTML = users.map(u => u.name).toString()
-        }
-    })
