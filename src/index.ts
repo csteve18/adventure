@@ -7,7 +7,7 @@ interface GPSCoordinate {
 
 function getGPSCoordinates(): Promise<GPSCoordinate[]> {
 
-    return fetch('https://jsonplaceholder.typicode.com/users')
+    return fetch('https://localhost:5001/adventure')
             .then(response => response.json())
             .then(json => { return json as GPSCoordinate[] })
 }
