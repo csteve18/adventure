@@ -7,7 +7,7 @@ interface GPSCoordinate {
 
 function getGPSCoordinates(): Promise<GPSCoordinate[]> {
 
-    return fetch('https://localhost:51328/adventure')
+    return fetch('localhost:51328/adventure')
             .then(response => response.json())
             .then(json => { return json as GPSCoordinate[] })
 }
