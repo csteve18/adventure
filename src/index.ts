@@ -1,12 +1,12 @@
 interface User {
     id: number
-    name: string
+    latitude: number
+    longitude: number 
+    hitDate: Date
 }
 
 function getUsers(): Promise<User[]> {
-
-    // For now, consider the data is stored on a static `users.json` file
-    return fetch('https://jsonplaceholder.typicode.com/users')
+    return fetch('https://localhost:5001/gpscoordinate')
             .then(response => response.json())
             .then(json => { return json as User[] })
 }
@@ -16,6 +16,6 @@ const result = document.getElementById('result')
 getUsers()
     .then(users => {
         if(result != null){
-            result.innerHTML = users.map(u => u.name).toString()
+            result.innerHTML = users.map(u => u.hitDate).toString()
         }
     })
